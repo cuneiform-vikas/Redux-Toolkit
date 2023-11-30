@@ -1,70 +1,17 @@
-.container {
+/* Utility CSS Classes  */
+
+.flex {
   display: flex;
-  justify-content: center;
-  align-items: stretch;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1.2rem;
 }
 
-.container .userCard {
-  width: 100%;
-  max-width: 300px;
-  min-width: 220px;
-  padding: 1rem;
-  border: 2px solid salmon;
-  border-radius: 10px;
+.flex-col {
+  flex-direction: column;
 }
 
-.container .userCard:hover {
-  background-color: white;
-  animation: button 100ms ease-in both;
-  cursor: pointer;
+.justify-between {
+  justify-content: space-between;
 }
 
-@keyframes button {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.2);
-    box-shadow: 0px 0px 8px #c79191;
-  }
-}
-
-.container a {
-  color: black;
-  text-decoration: none;
-}
-
-.user-details {
-  background-color: #eed7d7;
-  padding: 2rem;
-}
-
-.user-details h1 {
-  text-transform: uppercase;
-  font-weight: bolder;
-}
-
-.user-details p {
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.user-details div {
-  display: flex;
-  gap: 1rem;
-}
-
-div button {
-  background-color: rgb(241, 241, 241);
-  border: none;
-  padding: 0.25rem;
-  text-transform: uppercase;
-}
-
-div button:hover {
-  animation: button 100ms linear both;
-  cursor: pointer;
+.align-start{
+    align-items: start;
 }
