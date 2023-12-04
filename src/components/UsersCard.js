@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { add, removeUser } from "../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useDeleteUserMutation } from "../redux/usersApi";
+import { add, removeUser } from "../redux/userSlice";
 import UserDetails from "./UserDetails";
-import { useDeleteUserMutation } from "../redux/users";
 
 const UsersCard = ({ usersData }) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const UsersCard = ({ usersData }) => {
 
   useEffect(() => {
     dispatch(add(usersData));
-  }, []);
+  }, [dispatch, usersData]);
 
   const handleDelete = async (id) => {
     try {

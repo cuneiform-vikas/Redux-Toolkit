@@ -1,40 +1,38 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const BASE_URL = "https://65681b2b9927836bd97417af.mockapi.io/redux";
+
 // Define a service using a base URL and expected endpoints
 export const usersApi = createApi({
   reducerPath: "usersApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://jsonplaceholder.typicode.com",
+    baseUrl: BASE_URL,
   }),
   endpoints: (builder) => ({
     getAllUsers: builder.query({
-      query: () => "/users",
-    }),
-
-    getUser: builder.query({
-      query: (pathname) => `${pathname}`,
+      query: () => "/",
     }),
 
     addNewUser: builder.mutation({
-      query: ({ id, name, email, phone }) => ({
-        url: "/users",
+      query: (body) => ({
+        url: "/",
         method: "POST",
-        body: { id, name, email, phone },
+        body: body,
       }),
     }),
 
     deleteUser: builder.mutation({
       query: ({ id }) => ({
-        url: `/users/${id}`,
+        url: `/${id}`,
         method: "DELETE",
       }),
     }),
 
     updateUser: builder.mutation({
-      query: (user) => ({
-        url: `/users/${user.id}`,
+      query: (body) => ({
+        url: `/${body.id}`,
         method: "PUT",
-        body: user,
+        body: body,
       }),
     }),
   }),
@@ -44,7 +42,6 @@ export const usersApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetAllUsersQuery,
-  useGetUserQuery,
   useAddNewUserMutation,
   useDeleteUserMutation,
   useUpdateUserMutation,

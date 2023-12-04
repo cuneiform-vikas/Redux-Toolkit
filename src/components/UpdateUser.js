@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { useAddNewUserMutation } from "../redux/users";
-import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../redux/userSlice";
+import { useUpdateUserMutation } from "../redux/usersApi";
+import { useDispatch } from "react-redux";
+import { updateUserData } from "../redux/userSlice";
 
-const Form = () => {
-  const [user, setUser] = useState({ name: "", email: "", phone: "" });
+const UpdateUser = ({ data }) => {
+  const [user, setUser] = useState({
+    id: data.id,
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+  });
 
-  const usersData = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
-  const [addNewUser, { isLoading }] = useAddNewUserMutation();
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,14 +26,15 @@ const Form = () => {
   const submitButton = async (event) => {
     event.preventDefault();
     try {
-      await addNewUser({ id: usersData.length + 1, ...user });
+      await updateUser(user);
     } catch (error) {
       console.log(error);
     }
 
-    dispatch(addUser({ id: usersData.length + 1, ...user }));
+    dispatch(updateUserData(user));
 
     setUser({
+      id: "",
       name: "",
       email: "",
       phone: "",
@@ -64,11 +69,11 @@ const Form = () => {
       />
       <input
         type="submit"
-        value={isLoading ? "Wait..." : "Add New User"}
+        value={isLoading ? "Wait..." : "Update Details"}
         disabled={isLoading}
       />
     </form>
   );
 };
 
-export default Form;
+export default UpdateUser;

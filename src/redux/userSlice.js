@@ -5,8 +5,8 @@ export const usersSlice = createSlice({
   initialState: [],
   reducers: {
     add: (state, action) => {
-      state.length = 0; // Clear the current state
-      state.push(...action.payload); // Push new elements into the existing state
+      state.length = 0;
+      state.push(...action.payload);
     },
     addUser: (state, action) => {
       state.push(action.payload);
@@ -14,7 +14,7 @@ export const usersSlice = createSlice({
     removeUser: (state, action) => {
       return state.filter((user) => user.id !== action.payload);
     },
-    updateUser: (state, action) => {
+    updateUserData: (state, action) => {
       return state.map((user) =>
         user.id === action.payload.id ? action.payload : user
       );
@@ -22,6 +22,6 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { add, addUser, removeUser, updateUser } = usersSlice.actions;
+export const { add, addUser, removeUser, updateUserData } = usersSlice.actions;
 
 export default usersSlice.reducer;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetAllUsersQuery } from "../redux/users";
+import { useGetAllUsersQuery } from "../redux/usersApi";
 import UsersCard from "../components/UsersCard";
 
 const DataFetch = () => {
