@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { usersApi } from "./usersApi";
 import usersReducer from "./userSlice";
-import storage from "redux-persist/lib/storage"; // default to local storage for web apps
+import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
 import persistReducer from "redux-persist/es/persistReducer";
 import {
@@ -12,16 +12,18 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
+import formReducer from "./formSlice";
 
 const rootpersist = combineReducers({
   [usersApi.reducerPath]: usersApi.reducer,
   users: usersReducer,
+  form: formReducer,
 });
 
 const persistConfig = {
   key: "user",
   storage: storage,
-  whitelist: ["users"],
+  whitelist: ["form"],
 };
 
 const pReducer = persistReducer(persistConfig, rootpersist);

@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAddNewUserMutation } from "../redux/usersApi";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../redux/userSlice";
+import { setUser } from "../redux/formSlice";
 
 const CreateUser = () => {
-  const [user, setUser] = useState({ name: "", email: "", phone: "" });
+  const [addNewUser, { isLoading }] = useAddNewUserMutation();
 
   const usersData = useSelector((state) => state.users);
-  const dispatch = useDispatch();
+  const user = useSelector((state) => state.form);
 
-  const [addNewUser, { isLoading }] = useAddNewUserMutation();
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUser((prevProps) => ({
-      ...prevProps,
-      [name]: value,
-    }));
+    dispatch(setUser({ name, value }));
   };
 
   const submitButton = async (event) => {
@@ -28,12 +26,6 @@ const CreateUser = () => {
     }
 
     dispatch(addUser({ id: usersData.length + 1, ...user }));
-
-    setUser({
-      name: "",
-      email: "",
-      phone: "",
-    });
   };
 
   return (
