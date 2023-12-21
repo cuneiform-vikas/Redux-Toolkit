@@ -1,6 +1,6 @@
 import React from "react";
 import { useGetAllUsersQuery } from "../redux/usersApi";
-import UsersCard from "../components/UsersCard";
+import UsersCard from "./UsersCard";
 
 const DataFetch = () => {
   // Fetching users data with error handling from jsonplaceholder api

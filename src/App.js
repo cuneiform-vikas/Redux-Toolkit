@@ -1,5 +1,5 @@
 import CreateUser from "./components/CreateUser";
-import DataFetch from "./features/DataFetch";
+import DataFetch from "./components/DataFetch";
 import "./utils/App.css";
 
 const App = () => {
